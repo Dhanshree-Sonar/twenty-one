@@ -1,4 +1,4 @@
-from behave import *
+from behave import given, when, then
 from twentyone import *
 
 @given('a dealer')
