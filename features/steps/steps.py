@@ -5,6 +5,16 @@ from twentyone import *
 def step_impl(context):
     context.dealer = Dealer()
 
+@given('a hand {total:d}')
+def step_impl(context, total):
+    context.dealer = Dealer()
+    context.total = total
+
+@given('a {hand}')
+def step_impl(context, hand):
+    context.dealer = Dealer()
+    context.dealer.hand = hand.split(',')
+
 @when('the round starts')
 def step_impl(context):
     context.dealer.new_round()
@@ -13,11 +23,6 @@ def step_impl(context):
 def step_impl(context):
     assert (len(context.dealer.hand) == 2)
 
-@given('a {hand}')
-def step_impl(context, hand):
-    context.dealer = Dealer()
-    context.dealer.hand = hand.split(',')
-
 @when('the dealer sums the cards')
 def step_impl(context):
     context.dealer_total = context.dealer.get_hand_total()
@@ -25,8 +30,3 @@ def step_impl(context):
 @then('the {total:d} is correct')
 def step_impl(context, total):
     assert (context.dealer_total == total)
-
-@given('a hand {total:d}')
-def step_impl(context, total):
-    context.dealer = Dealer()
-    context.total = total
