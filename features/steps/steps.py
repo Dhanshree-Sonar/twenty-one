@@ -25,3 +25,8 @@ def step_impl(context):
 @then('the {total:d} is correct')
 def step_impl(context, total):
     assert (context.dealer_total == total)
+
+@given('a hand {total:d}')
+def step_impl(context, total):
+    context.dealer = Dealer()
+    context.total = total
