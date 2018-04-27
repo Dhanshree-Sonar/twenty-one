@@ -36,3 +36,7 @@ def step_impl(context):
 @then('the {total:d} is correct')
 def step_impl(context, total):
     assert (context.dealer_total == total)
+
+@then('the {play} is correct')
+def step_impl(context, play):
+    assert (context.dealer_play == play)
